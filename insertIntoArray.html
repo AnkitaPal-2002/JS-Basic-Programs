@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Insert Into Array after nth position</title>
+</head>
+
+<body>
+    <h1>Insert Into Array after nth position</h1>
+    <p>Enter values separated by commas : </p>
+    <input type="text" id="elementsInput" placeholder="e.g. 1, 2, a, 4, 5" required>
+    <p>Enter the value to insert : </p>
+    <input type="text" id="valueInput" placeholder="Enter value" required>
+    <p>Enter the position to insert after : </p>
+    <input type="text" id="positionInput" placeholder="Enter position" required>
+    <button onclick="takingInput()">Insert</button>
+    <p id="Output"></p>
+
+    <script>
+        function takingInput() {
+            var input = document.getElementById('elementsInput').value;
+            var arr = input.split(',');
+            var value = document.getElementById('valueInput').value;
+            var position = parseInt(document.getElementById('positionInput').value);
+            if (isNaN(position) || position < 1 || position > arr.length + 1) {
+                document.getElementById('Output').innerHTML = "Invalid position";
+                return;
+            }
+
+            const newarr = insertIntoArray(arr, value, position);
+            document.getElementById('Output').innerText = `Array after inserting ${value} at every ${position}th position: [${newarr.join(", ")}]`;
+
+        }
+
+        function insertIntoArray(arr, value, position) {
+            const result = [];
+            for (let i = 0; i < arr.length; i++) {
+                result.push(arr[i]);
+
+                if ((i + 1) % position === 0) {
+                    result.push(value);
+                }
+            }
+
+            return result;
+        }
+    </script>
+</body>
+
+</html>

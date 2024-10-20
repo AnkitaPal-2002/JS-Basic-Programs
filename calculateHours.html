@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Hours Until End of Day</title>
+</head>
+
+<body>
+    <h1>Calculate Hours Until End Of The Day</h1>
+    <label for="dateInput">Enter a date and time (YYYY-MM-DDTHH:MM:SS) : </label>
+    <input type="datetime-local" name="dateInput" id="dateInput" required>
+    <button onclick="calculateHours()">Calculate Hours</button>
+    <p id="Output"></p>
+
+    <script>
+        function calculateHours() {
+            var inputDate = document.getElementById('dateInput').value;
+            if (!inputDate) {
+                document.getElementById('Output').innerText = "Please enter a date and time";
+                return;
+            }
+            var targetDate = new Date(inputDate);
+            //targetDate.setHours(23, 59, 59.999);
+            var currentTime = new Date();
+            console.log(currentTime);
+            currentTime.setHours(23, 59, 59.999);
+
+
+            var diffTime = targetDate - currentTime;
+            console.log(diffTime);
+
+            // var diffDays = Math.floor(diffTime / (1000 * 60 * 60 * 24));
+            var diffHours = Math.floor((diffTime / (1000 * 60 * 60)));
+            // var diffMinutes = Math.floor((diffTime % (1000 * 60 * 60)) / (1000 * 60));
+            // var diffSeconds = Math.floor((diffTime % (1000 * 60)) / 1000);
+
+            if (diffHours > 0) {
+                document.getElementById('Output').innerText = `Hours until the end of the day ${diffHours}`;
+            } else {
+                document.getElementById('Output').innerText = "The day is passed";
+            }
+        }
+    </script>
+</body>
+
+</html>
