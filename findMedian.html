@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Find median of an Array</title>
+</head>
+
+<body>
+    <h1>Find Median of the array</h1>
+    <p>Enter numbers separated by commas : </p>
+    <input type="text" id="numbersInput" placeholder="e.g. 1, 2, 3, 4, 5" required>
+    <button onclick="calculateMedian()">Find Median</button>
+    <p id="medianOutput"></p>
+
+    <script>
+        function calculateMedian() {
+            var input = document.getElementById('numbersInput').value;
+            var numbers = input.split(',').map(Number);
+
+            // Sort the array   by median   values  and calculate the median   
+            numbers.sort((a, b) => a - b);
+            var middleIndex = Math.floor(numbers.length / 2);
+
+            if (numbers.length % 2 === 0) {
+                var median = (numbers[middleIndex - 1] + numbers[middleIndex]) / 2;
+            } else {
+                var median = numbers[middleIndex];
+            }
+
+            document.getElementById('medianOutput').innerHTML = 'Median: ' + median;
+
+        }
+    </script>
+
+</body>
+
+</html>

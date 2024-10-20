@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Remove duplicates from array</title>
+</head>
+
+<body>
+    <h1>Remove duplicates from array</h1>
+    <p>Enter numbers separated by commas : </p>
+    <input type="text" id="numbersInput" placeholder="e.g. 1, 2, 3, 4, 5" required>
+    <button onclick="removeDuplicate()">Remove all duplicates</button>
+    <p id="Output"></p>
+
+    <script>
+        function removeDuplicate() {
+            var input = document.getElementById('numbersInput').value;
+            var numbers = input.split(',').map(Number);
+
+            // Check if all inputs are valid numbers
+            if (numbers.some(isNaN)) {
+                document.getElementById('Output').innerHTML = "Please enter the valid numbers";
+            }
+
+            const seen = new Set();
+            const result = [];
+
+            for (let num of numbers) {
+                if (!seen.has(num)) {
+                    seen.add(num);
+                    result.push(num);
+                }
+            }
+
+            //console.log(result);
+
+
+            document.getElementById('Output').innerText = `Array without duplicates: [${result.join(", ")}]`;
+
+        }
+    </script>
+
+</body>
+
+</html>
